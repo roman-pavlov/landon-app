@@ -5,6 +5,11 @@ AWS.config.update({
   region: "eu-west-2"
 });
 
+if (process.env.AWS_SAM_LOCAL) {
+  AWS.config.update({
+    endpoint: "http://localhost:8000"
+  });
+}
 console.log("Writing entries to MenuLinks table.");
 
 var dynamodb = new AWS.DynamoDB.DocumentClient();

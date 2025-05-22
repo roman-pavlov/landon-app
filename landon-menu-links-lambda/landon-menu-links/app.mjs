@@ -20,8 +20,7 @@ AWS.config.update({
 });
 
 const dynamodb = new AWS.DynamoDB.DocumentClient({
-  region: 'eu-west-2',
-  endpoint: process.env.AWS_SAM_LOCAL ? 'http://localhost:8000' : undefined,
+  endpoint: process.env.AWS_SAM_LOCAL ? 'http://dynamodb-local:8000' : undefined,
 });
 
 

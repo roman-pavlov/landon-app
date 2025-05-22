@@ -1,9 +1,15 @@
 var AWS = require("aws-sdk");
+AWS.config.update({
+  region: "eu-west-2"
+});
 
-// AWS.config.update({
-//   region: "eu-west-2"
-// });
 
+if (process.env.AWS_SAM_LOCAL) {
+  AWS.config.update({
+    endpoint: "http://localhost:8000"
+  });
+}
+// Create the DynamoDB service object
 var dynamodb = new AWS.DynamoDB();
 
 var params = {

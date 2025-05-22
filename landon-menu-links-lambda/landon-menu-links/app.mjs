@@ -34,6 +34,11 @@ export const lambdaHandler = async (event, context) => {
     const data = await dynamodb.scan(params).promise();
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*', // <-- CORS header
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET,OPTIONS',
+      },
       body: JSON.stringify(data.Items),
     };
 
@@ -42,9 +47,12 @@ export const lambdaHandler = async (event, context) => {
 
     return {
       statusCode: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*', // <-- CORS header
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET,OPTIONS',
+      },
       body: JSON.stringify({ error: 'Could not fetch data' }),
     };
   }
-
-
 };
